@@ -57,7 +57,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
+<!--пва-->
         <Style x:Key="CardStyle" TargetType="Border">
             <Setter Property="Background" Value="{StaticResource CinemaGray}"/>
             <Setter Property="BorderBrush" Value="{StaticResource CinemaGold}"/>
