@@ -1,0 +1,271 @@
+﻿<Window x:Class="CinemaBB.BookingWIndow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CinemaBB"
+        mc:Ignorable="d"
+        Title="BookingWIndow" Height="950" Width="1080">
+
+
+
+
+    <!-- Views/BookingPage.xaml -->
+    <Window.Resources>
+        <!-- Цветовая схема кинотеатра -->
+        <SolidColorBrush x:Key="CinemaDark" Color="#1A1A2E"/>
+        <SolidColorBrush x:Key="CinemaRed" Color="#E50914"/>
+        <SolidColorBrush x:Key="CinemaGold" Color="#F5C518"/>
+        <SolidColorBrush x:Key="CinemaGray" Color="#2D2D3A"/>
+        <SolidColorBrush x:Key="CinemaLightGray" Color="#3A3A4A"/>
+        <SolidColorBrush x:Key="CinemaWhite" Color="#FFFFFF"/>
+
+        <Style x:Key="MenuButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{StaticResource CinemaWhite}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="12,8"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="4">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource CinemaRed}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="ActionButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource CinemaRed}"/>
+            <Setter Property="Foreground" Value="{StaticResource CinemaWhite}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="12,8"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="4">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="CinemaTextBoxStyle" TargetType="TextBox">
+            <Setter Property="Background" Value="{StaticResource CinemaGray}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource CinemaGold}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Foreground" Value="{StaticResource CinemaWhite}"/>
+            <Setter Property="Height" Value="40"/>
+        </Style>
+
+        <Style x:Key="CinemaComboBoxStyle" TargetType="ComboBox">
+            <Setter Property="Background" Value="{StaticResource CinemaGray}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource CinemaGold}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Foreground" Value="{StaticResource CinemaWhite}"/>
+            <Setter Property="Height" Value="40"/>
+        </Style>
+
+        <Style x:Key="SeatStyle" TargetType="Button">
+            <Setter Property="Width" Value="40"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Background" Value="{StaticResource CinemaGray}"/>
+            <Setter Property="Foreground" Value="{StaticResource CinemaWhite}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource CinemaGold}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Margin" Value="4"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="1" 
+                                CornerRadius="4">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource CinemaGold}"/>
+                    <Setter Property="Foreground" Value="{StaticResource CinemaDark}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Border Background="Transparent">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Background="Transparent">
+            <Grid Margin="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Левая колонка: выбор фильма, даты, времени -->
+                <Border Grid.Column="0" Background="Transparent" Margin="0,0,10,0">
+                    <StackPanel>
+                        <!-- Выбор фильма -->
+                        <TextBlock Text="Выберите фильм" Foreground="{StaticResource CinemaGold}" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+                        <ComboBox Style="{StaticResource CinemaComboBoxStyle}" Margin="0,0,0,20">
+                            <ComboBoxItem Content="Аватар: Путь воды" IsSelected="True"/>
+                            <ComboBoxItem Content="Оппенгеймер"/>
+                            <ComboBoxItem Content="Барби"/>
+                            <ComboBoxItem Content="Джон Уик 4"/>
+                            <ComboBoxItem Content="Дюна: Часть вторая"/>
+                        </ComboBox>
+
+                        <!-- Выбор даты -->
+                        <TextBlock Text="Выберите дату" Foreground="{StaticResource CinemaGold}" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+                        <Border Background="{StaticResource CinemaGray}" CornerRadius="8" Padding="15" Margin="0,0,0,20">
+                            <StackPanel>
+                                <TextBlock Text="Март 2025" Foreground="{StaticResource CinemaWhite}" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+                                <UniformGrid Columns="7" Rows="5">
+                                    <Button Content="1" Style="{StaticResource MenuButtonStyle}" Padding="5" Height="35"/>
+                                    <Button Content="2" Style="{StaticResource MenuButtonStyle}" Padding="5" Height="35"/>
+                                    <Button Content="3" Style="{StaticResource MenuButtonStyle}" Padding="5" Height="35"/>
+                                    <Button Content="4" Style="{StaticResource MenuButtonStyle}" Padding="5" Height="35"/>
+                                    <Button Content="5" Style="{StaticResource MenuButtonStyle}" Padding="5" Height="35"/>
+                                    <Button Content="6" Style="{StaticResource MenuButtonStyle}" Padding="5" Height="35"/>
+                                    <Button Content="7" Style="{StaticResource MenuButtonStyle}" Padding="5" Height="35"/>
+                                    <Button Content="8" Style="{StaticResource MenuButtonStyle}" Padding="5" Height="35"/>
+                                    <Button Content="9" Style="{StaticResource MenuButtonStyle}" Padding="5" Height="35"/>
+                                    <Button Content="10" Style="{StaticResource MenuButtonStyle}" Padding="5" Height="35"/>
+                                    <Button Content="11" Style="{StaticResource MenuButtonStyle}" Padding="5" Height="35"/>
+                                    <Button Content="12" Style="{StaticResource MenuButtonStyle}" Padding="5" Height="35"/>
+                                    <Button Content="13" Style="{StaticResource MenuButtonStyle}" Padding="5" Height="35"/>
+                                    <Button Content="14" Style="{StaticResource MenuButtonStyle}" Padding="5" Height="35"/>
+                                    <Button Content="15" Style="{StaticResource MenuButtonStyle}" Padding="5" Height="35"/>
+                                    <Button Content="16" Style="{StaticResource MenuButtonStyle}" Padding="5" Height="35"/>
+                                    <Button Content="17" Style="{StaticResource MenuButtonStyle}" Padding="5" Height="35"/>
+                                    <Button Content="18" Style="{StaticResource MenuButtonStyle}" Padding="5" Height="35"/>
+                                    <Button Content="19" Style="{StaticResource MenuButtonStyle}" Padding="5" Height="35"/>
+                                    <Button Content="20" Style="{StaticResource MenuButtonStyle}" Padding="5" Height="35"/>
+                                    <Button Content="21" Style="{StaticResource MenuButtonStyle}" Padding="5" Height="35"/>
+                                    <Button Content="22" Style="{StaticResource MenuButtonStyle}" Padding="5" Height="35"/>
+                                    <Button Content="23" Style="{StaticResource MenuButtonStyle}" Padding="5" Height="35"/>
+                                    <Button Content="24" Style="{StaticResource MenuButtonStyle}" Padding="5" Height="35"/>
+                                    <Button Content="25" Style="{StaticResource MenuButtonStyle}" Padding="5" Height="35"/>
+                                    <Button Content="26" Style="{StaticResource MenuButtonStyle}" Padding="5" Height="35"/>
+                                    <Button Content="27" Style="{StaticResource MenuButtonStyle}" Padding="5" Height="35"/>
+                                    <Button Content="28" Style="{StaticResource MenuButtonStyle}" Padding="5" Height="35"/>
+                                    <Button Content="29" Style="{StaticResource MenuButtonStyle}" Padding="5" Height="35"/>
+                                    <Button Content="30" Style="{StaticResource MenuButtonStyle}" Padding="5" Height="35"/>
+                                    <Button Content="31" Style="{StaticResource MenuButtonStyle}" Padding="5" Height="35"/>
+                                </UniformGrid>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Выбор времени -->
+                        <TextBlock Text="Выберите время" Foreground="{StaticResource CinemaGold}" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+                        <WrapPanel Margin="0,0,0,20">
+                            <Button Content="10:00" Style="{StaticResource ActionButtonStyle}" Background="{StaticResource CinemaGray}" Margin="0,0,10,10" Width="70"/>
+                            <Button Content="13:00" Style="{StaticResource ActionButtonStyle}" Background="{StaticResource CinemaGray}" Margin="0,0,10,10" Width="70"/>
+                            <Button Content="16:00" Style="{StaticResource ActionButtonStyle}" Background="{StaticResource CinemaRed}" Margin="0,0,10,10" Width="70"/>
+                            <Button Content="19:00" Style="{StaticResource ActionButtonStyle}" Background="{StaticResource CinemaGray}" Margin="0,0,10,10" Width="70"/>
+                            <Button Content="22:00" Style="{StaticResource ActionButtonStyle}" Background="{StaticResource CinemaGray}" Margin="0,0,10,10" Width="70"/>
+                        </WrapPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- Правая колонка: схема зала и данные клиента -->
+                <Border Grid.Column="1" Background="Transparent" Margin="10,0,0,0">
+                    <StackPanel>
+                        <!-- Схема зала -->
+                        <TextBlock Text="Выберите места" Foreground="{StaticResource CinemaGold}" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+                        <Border Background="{StaticResource CinemaGray}" CornerRadius="8" Padding="20" Margin="0,0,0,20">
+                            <StackPanel>
+                                <Border Background="{StaticResource CinemaRed}" Height="4" Width="200" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+                                <TextBlock Text="ЭКРАН" Foreground="{StaticResource CinemaWhite}" FontSize="10" HorizontalAlignment="Center" Margin="0,0,0,15"/>
+
+                                <UniformGrid Columns="8" Rows="5">
+                                    <Button Content="1" Style="{StaticResource SeatStyle}"/>
+                                    <Button Content="2" Style="{StaticResource SeatStyle}"/>
+                                    <Button Content="3" Style="{StaticResource SeatStyle}"/>
+                                    <Button Content="4" Style="{StaticResource SeatStyle}"/>
+                                    <Button Content="5" Style="{StaticResource SeatStyle}"/>
+                                    <Button Content="6" Style="{StaticResource SeatStyle}"/>
+                                    <Button Content="7" Style="{StaticResource SeatStyle}"/>
+                                    <Button Content="8" Style="{StaticResource SeatStyle}"/>
+                                    <Button Content="1" Style="{StaticResource SeatStyle}"/>
+                                    <Button Content="2" Style="{StaticResource SeatStyle}"/>
+                                    <Button Content="3" Style="{StaticResource SeatStyle}"/>
+                                    <Button Content="4" Style="{StaticResource SeatStyle}"/>
+                                    <Button Content="5" Style="{StaticResource SeatStyle}"/>
+                                    <Button Content="6" Style="{StaticResource SeatStyle}"/>
+                                    <Button Content="7" Style="{StaticResource SeatStyle}"/>
+                                    <Button Content="8" Style="{StaticResource SeatStyle}"/>
+                                    <Button Content="1" Style="{StaticResource SeatStyle}"/>
+                                    <Button Content="2" Style="{StaticResource SeatStyle}"/>
+                                    <Button Content="3" Style="{StaticResource SeatStyle}"/>
+                                    <Button Content="4" Style="{StaticResource SeatStyle}"/>
+                                    <Button Content="5" Style="{StaticResource SeatStyle}"/>
+                                    <Button Content="6" Style="{StaticResource SeatStyle}"/>
+                                    <Button Content="7" Style="{StaticResource SeatStyle}"/>
+                                    <Button Content="8" Style="{StaticResource SeatStyle}"/>
+                                    <Button Content="1" Style="{StaticResource SeatStyle}"/>
+                                    <Button Content="2" Style="{StaticResource SeatStyle}"/>
+                                    <Button Content="3" Style="{StaticResource SeatStyle}"/>
+                                    <Button Content="4" Style="{StaticResource SeatStyle}"/>
+                                    <Button Content="5" Style="{StaticResource SeatStyle}"/>
+                                    <Button Content="6" Style="{StaticResource SeatStyle}"/>
+                                    <Button Content="7" Style="{StaticResource SeatStyle}"/>
+                                    <Button Content="8" Style="{StaticResource SeatStyle}"/>
+                                    <Button Content="1" Style="{StaticResource SeatStyle}"/>
+                                    <Button Content="2" Style="{StaticResource SeatStyle}"/>
+                                    <Button Content="3" Style="{StaticResource SeatStyle}"/>
+                                    <Button Content="4" Style="{StaticResource SeatStyle}"/>
+                                    <Button Content="5" Style="{StaticResource SeatStyle}"/>
+                                    <Button Content="6" Style="{StaticResource SeatStyle}"/>
+                                    <Button Content="7" Style="{StaticResource SeatStyle}"/>
+                                    <Button Content="8" Style="{StaticResource SeatStyle}"/>
+                                </UniformGrid>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Данные для бронирования -->
+                        <TextBlock Text="Ваши данные" Foreground="{StaticResource CinemaGold}" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+                        <TextBox Style="{StaticResource CinemaTextBoxStyle}" Text="Иванов Иван" Margin="0,0,0,10" Tag="Имя и фамилия"/>
+                        <TextBox Style="{StaticResource CinemaTextBoxStyle}" Text="+7 (999) 123-45-67" Margin="0,0,0,10" Tag="Телефон"/>
+                        <TextBox Style="{StaticResource CinemaTextBoxStyle}" Text="ivanov@mail.ru" Margin="0,0,0,10" Tag="Email"/>
+
+                        <!-- Итоговая информация -->
+                        <Border Background="{StaticResource CinemaLightGray}" CornerRadius="8" Padding="15" Margin="0,10,0,20">
+                            <StackPanel>
+                                <TextBlock Text="Ваш заказ" Foreground="{StaticResource CinemaGold}" FontWeight="Bold" Margin="0,0,0,5"/>
+                                <TextBlock Text="Фильм: Аватар: Путь воды" Foreground="{StaticResource CinemaWhite}" FontSize="12"/>
+                                <TextBlock Text="Дата: 25 марта 2025" Foreground="{StaticResource CinemaWhite}" FontSize="12"/>
+                                <TextBlock Text="Время: 16:00" Foreground="{StaticResource CinemaWhite}" FontSize="12"/>
+                                <TextBlock Text="Места: 5 ряд, 6 место" Foreground="{StaticResource CinemaWhite}" FontSize="12"/>
+                                <TextBlock Text="Стоимость: 500 ₽" Foreground="{StaticResource CinemaGold}" FontSize="14" FontWeight="Bold" Margin="0,5,0,0"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Кнопка бронирования -->
+                        <Button Content="ЗАБРОНИРОВАТЬ БИЛЕТЫ" Style="{StaticResource ActionButtonStyle}" Height="50" FontSize="14" FontWeight="Bold"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </ScrollViewer>
+    </Border>
+    </Window> 
